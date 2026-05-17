@@ -1,3 +1,4 @@
 datasets/cars/
 *.pkl
 __pycache__/
+*.mmap
