@@ -1,7 +1,4 @@
-
 class Value:
-    """ stores a single scalar value and its gradient """
-
     def __init__(self, data, _children=(), _op=''):
         self.data = data
         self.grad = 0
@@ -53,7 +50,6 @@ class Value:
 
     def backward(self):
 
-        # topological order all of the children in the graph
         topo = []
         visited = set()
         def build_topo(v):
