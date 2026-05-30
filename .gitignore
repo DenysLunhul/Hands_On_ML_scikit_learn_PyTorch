@@ -1,4 +1,3 @@
-Classic_Machine_Learning/datasets/cars/
 *.pkl
 __pycache__/
 *.mmap
