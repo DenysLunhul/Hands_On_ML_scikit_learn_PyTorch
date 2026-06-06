@@ -3,3 +3,4 @@ __pycache__/
 *.mmap
 .venv
 Neural_Networks_Deep_Learning/Chapter_11/datasets
+Neural_Networks_Deep_Learning/CISAR10/data
