@@ -13,6 +13,7 @@
       <option name="ignoredPackages">
         <list>
           <option value="scipy" />
+          <option value="pandas" />
         </list>
       </option>
     </inspection_tool>
