@@ -1,0 +1,23 @@
+artifact_path: /home/denys/PycharmProjects/Hands-On_ML/MLFLow/mlruns/2/models/m-2ac5710687604cae96be5ccdc6fb85bb/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.12.3
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.8.0
+    skops_trusted_types: null
+mlflow_version: 3.13.0
+model_id: m-2ac5710687604cae96be5ccdc6fb85bb
+model_size_bytes: 8002872
+model_uuid: m-2ac5710687604cae96be5ccdc6fb85bb
+prompts: null
+run_id: 3234fc4fff5346998599d3b6d817ce5b
+utc_time_created: '2026-06-14 16:30:46.810020'
