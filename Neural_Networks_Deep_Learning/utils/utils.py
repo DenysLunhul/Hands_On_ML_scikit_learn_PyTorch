@@ -57,9 +57,14 @@ def evaluate(model, data_loader, metric):
     return metric.compute().item()
 
 
-def train(model, optimizer, criterion, train_loader, valid_loader, metric, n_epochs, n_iter_no_improvements, scheduler=None):
+def train(model, optimizer, criterion,
+          train_loader, valid_loader, metric,
+          n_epochs, n_iter_no_improvements, scheduler=None, metric_direction="maximize"):
     model.train()
-    best_val_score = 0
+    if metric_direction == "maximize":
+        best_val_score = 0
+    elif metric_direction == "minimize":
+        best_val_score = float('inf')
     iter_no_improvements = 0
 
     for epoch in range(n_epochs):
@@ -85,11 +90,22 @@ def train(model, optimizer, criterion, train_loader, valid_loader, metric, n_epo
             else:
                 scheduler.step()
 
-        if val_score > best_val_score:
-            best_val_score = val_score
-            iter_no_improvements = 0
+        if metric_direction == "maximize":
+            if val_score > best_val_score:
+                best_val_score = val_score
+                iter_no_improvements = 0
+            else:
+                iter_no_improvements += 1
+
+        elif metric_direction == "minimize":
+            if val_score < best_val_score:
+                best_val_score = val_score
+                iter_no_improvements = 0
+            else:
+                iter_no_improvements += 1
+
         else:
-            iter_no_improvements += 1
+            raise ValueError("Not valid direction")
 
         if iter_no_improvements >= n_iter_no_improvements:
             print(f"Validation score has not improved for {n_iter_no_improvements} epochs, stopping training")
