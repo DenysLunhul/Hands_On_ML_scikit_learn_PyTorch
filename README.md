@@ -63,6 +63,15 @@ Based on Part II of the book. Implemented with **PyTorch** and **torchvision**.
 | ResNet-34 | `CNN_Architectures/ResNet.ipynb` |
 | SENet | `CNN_Architectures/SENet.ipynb` |
 | Xception | `CNN_Architectures/Xception.ipynb` |
+| WaveNet | `CNN_Architectures/WaveNet.ipynb` |
+
+### RNN Architectures (from scratch in PyTorch)
+
+| Architecture | Notebook |
+|--------------|----------|
+| Vanilla RNN | `RNN_Architectures/Default_RNN.ipynb` |
+| LSTM | `RNN_Architectures/LSTM.ipynb` |
+| GRU | `RNN_Architectures/GRU.ipynb` |
 
 ### Practice Projects
 
