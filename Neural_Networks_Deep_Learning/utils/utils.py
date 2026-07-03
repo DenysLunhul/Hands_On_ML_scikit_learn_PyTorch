@@ -50,7 +50,11 @@ def evaluate(model, data_loader, metric):
     metric.reset()
     with torch.no_grad():
         for X_batch, y_batch in data_loader:
-            X_batch, y_batch = X_batch.to(device, non_blocking=True), y_batch.to(device, non_blocking=True)
+            if isinstance(X_batch, dict):
+                X_batch = {k: v.to(device, non_blocking=True) for k, v in X_batch.items()}
+            else:
+                X_batch = X_batch.to(device, non_blocking=True)
+            y_batch = y_batch.to(device, non_blocking=True)
             y_pred = model(X_batch)
             metric.update(y_pred, y_batch)
     model.train()
@@ -70,7 +74,11 @@ def train(model, optimizer, criterion,
     for epoch in range(n_epochs):
         epoch_loss = 0
         for X_batch, y_batch in train_loader:
-            X_batch, y_batch = X_batch.to(device, non_blocking=True), y_batch.to(device, non_blocking=True)
+            if isinstance(X_batch, dict):
+                X_batch = {k: v.to(device, non_blocking=True) for k, v in X_batch.items()}
+            else:
+                X_batch = X_batch.to(device, non_blocking=True)
+            y_batch = y_batch.to(device, non_blocking=True)
             y_pred = model(X_batch)
             loss = criterion(y_pred, y_batch)
             epoch_loss += loss.item()
