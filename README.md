@@ -52,6 +52,8 @@ Based on Part II of the book. Implemented with **PyTorch** and **torchvision**.
 | 11 | Training Deep Neural Networks — batch norm, dropout, optimizers, learning rate schedules | `Chapter_11/Chapter_11.ipynb` |
 | 12 | Deep Computer Vision with CNNs — conv layers, pooling, object detection, localization | `Chapter_12/Chapter_12.ipynb` |
 | 13 | Sequences & Time Series (RNNs) — forecasting, deep RNNs, seq2seq, WaveNet | `Chapter_13/Chapter_13.ipynb` |
+| 14 | NLP with RNNs & Attention — sentiment analysis, bidirectional RNNs, Hugging Face tokenizers/pretrained embeddings/pipelines/Trainer API | `Chapter_14/Chapter_14.ipynb` |
+| 15 | Transformers for NLP & Chatbots — attention, positional encodings, multihead attention, transformer architecture, NMT, BERT (encoder-only), sentence embeddings, GPT-2 generation/QA, chatbot | `Chapter_15/Chapter_15.ipynb` |
 
 ### CNN Architectures (from scratch in PyTorch)
 
@@ -81,6 +83,10 @@ Based on Part II of the book. Implemented with **PyTorch** and **torchvision**.
 | `EMNIST/emnist.ipynb` | Handwritten character recognition on EMNIST |
 | `HYMENOPTERA/hymenoptera.ipynb` | Transfer learning & fine-tuning ResNet-50 on bees vs. ants |
 
+### Char-RNN
+
+A from-scratch character-level RNN (`Char-RNN/Char-RNN_from_scratch.ipynb`) trained on Shakespeare's text to generate new text one character at a time.
+
 ### Micrograd
 
 A minimal autograd engine (`micrograd/engine.py` + `micrograd/nn.py`) built from scratch — implements reverse-mode automatic differentiation over a scalar value graph, inspired by Andrej Karpathy's micrograd.
@@ -105,6 +111,7 @@ Located in `MLFLow/`.
 - CNNs: conv layers, pooling, batch norm, skip connections, attention
 - RNNs: time-series forecasting, seq2seq, 1D WaveNet-style convolutions
 - Transfer learning and fine-tuning pretrained models
+- NLP: sentiment analysis, tokenization, attention, transformers, BERT, GPT-2, chatbots
 - Experiment tracking and reproducibility with MLflow
 - Hyperparameter optimization with Optuna
 - Building autograd from scratch
@@ -116,5 +123,6 @@ Located in `MLFLow/`.
 - Python 
 - scikit-learn · pandas · NumPy · Matplotlib
 - PyTorch · torchvision · torchmetrics
+- Hugging Face Transformers · Tokenizers · sentence-transformers
 - MLflow · Optuna
 - Jupyter Notebooks
