@@ -3,3 +3,4 @@ __pycache__/
 *.mmap
 .venv
 .idea
+.ipynb_checkpoints/

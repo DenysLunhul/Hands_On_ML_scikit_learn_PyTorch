@@ -1,6 +1,6 @@
 # Hands-On Machine Learning
 
-Personal study notebooks following **"Hands-On Machine Learning with Scikit-Learn and PyTorch" (2025)**, extended with custom CNN architectures, RNN/time-series models, and experiment tracking with MLflow + Optuna.
+Personal study notebooks following **"Hands-On Machine Learning with Scikit-Learn and PyTorch" (2025)**, extended with custom CNN architectures and RNN/time-series models.
 
 ---
 
@@ -10,7 +10,6 @@ Personal study notebooks following **"Hands-On Machine Learning with Scikit-Lear
 Hands-On_ML/
 ├── Classic_Machine_Learning/      # Chapters 1–8: sklearn & core ML concepts
 ├── Neural_Networks_Deep_Learning/ # Chapters 9–13: deep learning with PyTorch
-├── MLFLow/                        # Experiment tracking & hyperparameter tuning
 ```
 
 ---
@@ -93,17 +92,6 @@ A minimal autograd engine (`micrograd/engine.py` + `micrograd/nn.py`) built from
 
 ---
 
-## MLflow & Hyperparameter Tuning
-
-Located in `MLFLow/`.
-
-| Notebook | Description |
-|----------|-------------|
-| `MlFlow.ipynb` | Experiment tracking with MLflow on FashionMNIST |
-| `HyperParameterTuning.ipynb` | Automated hyperparameter search with **Optuna** + MLflow logging |
-
----
-
 ## Key Topics Covered
 
 - Supervised & unsupervised learning fundamentals
@@ -112,8 +100,6 @@ Located in `MLFLow/`.
 - RNNs: time-series forecasting, seq2seq, 1D WaveNet-style convolutions
 - Transfer learning and fine-tuning pretrained models
 - NLP: sentiment analysis, tokenization, attention, transformers, BERT, GPT-2, chatbots
-- Experiment tracking and reproducibility with MLflow
-- Hyperparameter optimization with Optuna
 - Building autograd from scratch
 
 ---
@@ -124,5 +110,4 @@ Located in `MLFLow/`.
 - scikit-learn · pandas · NumPy · Matplotlib
 - PyTorch · torchvision · torchmetrics
 - Hugging Face Transformers · Tokenizers · sentence-transformers
-- MLflow · Optuna
 - Jupyter Notebooks
