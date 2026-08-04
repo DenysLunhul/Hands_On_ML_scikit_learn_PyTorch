@@ -1,6 +1,6 @@
 # Hands-On Machine Learning
 
-Personal study notebooks following **"Hands-On Machine Learning with Scikit-Learn and PyTorch" (2025)**, extended with custom CNN architectures, RNN/time-series models, and experiment tracking with MLflow + Optuna.
+Personal study notebooks following **"Hands-On Machine Learning with Scikit-Learn and PyTorch" (2025)**, extended with custom CNN/RNN architectures from scratch, vision & multimodal transformers, generative models (VAEs/GANs/diffusion), LLM fine-tuning (SFT/DPO), mixed precision training, and quantization.
 
 ---
 
@@ -9,8 +9,7 @@ Personal study notebooks following **"Hands-On Machine Learning with Scikit-Lear
 ```
 Hands-On_ML/
 ├── Classic_Machine_Learning/      # Chapters 1–8: sklearn & core ML concepts
-├── Neural_Networks_Deep_Learning/ # Chapters 9–13: deep learning with PyTorch
-├── MLFLow/                        # Experiment tracking & hyperparameter tuning
+├── Neural_Networks_Deep_Learning/ # Chapters 9–18: deep learning with PyTorch & Hugging Face
 ```
 
 ---
@@ -36,12 +35,13 @@ Based on Part I of the book. Implemented with **scikit-learn**, **pandas**, and 
 |---------|-------------|
 | `practice/Titanic.ipynb` | Titanic survival prediction — full pipeline from EDA to submission |
 | `practice/Cars_Price_Prediction.ipynb` | Car price regression on a real-world dataset |
+| `Chapter_2/rebuild_from_scratch.ipynb` | End-to-end California Housing pipeline rebuilt from scratch, unguided |
 
 ---
 
 ## Neural Networks & Deep Learning
 
-Based on Part II of the book. Implemented with **PyTorch** and **torchvision**.
+Based on Part II of the book. Implemented with **PyTorch**, **torchvision**, and **Hugging Face** libraries.
 
 ### Book Chapters
 
@@ -53,7 +53,16 @@ Based on Part II of the book. Implemented with **PyTorch** and **torchvision**.
 | 12 | Deep Computer Vision with CNNs — conv layers, pooling, object detection, localization | `Chapter_12/Chapter_12.ipynb` |
 | 13 | Sequences & Time Series (RNNs) — forecasting, deep RNNs, seq2seq, WaveNet | `Chapter_13/Chapter_13.ipynb` |
 | 14 | NLP with RNNs & Attention — sentiment analysis, bidirectional RNNs, Hugging Face tokenizers/pretrained embeddings/pipelines/Trainer API | `Chapter_14/Chapter_14.ipynb` |
-| 15 | Transformers for NLP & Chatbots — attention, positional encodings, multihead attention, transformer architecture, NMT, BERT (encoder-only), sentence embeddings, GPT-2 generation/QA, chatbot | `Chapter_15/Chapter_15.ipynb` |
+| 15 | Transformers for NLP & Chatbots — attention, positional encodings, multihead attention, transformer architecture, NMT, BERT (encoder-only), sentence embeddings, GPT-2 generation/QA, turning an LLM into a chatbot with SFT + DPO fine-tuning via **TRL** | `Chapter_15/Chapter_15.ipynb` |
+| 16 | Vision & Multimodal Transformers — Vision Transformer (ViT) from scratch, fine-tuning `ViTForImageClassification` on Oxford-IIIT Pets, zero-shot classification & image-text similarity with **CLIP** | `Chapter_16/Chapter_16.ipynb` |
+| 18 | Autoencoders, GANs & Diffusion Models — stacked/tied/convolutional/sparse autoencoders, variational & discrete VAEs, GAN training loop, DDPM/DDIM diffusion from scratch, Stable Diffusion text-to-image via **diffusers** | `Chapter_18/Chapter_18.ipynb` |
+
+### Appendix
+
+| Topic | Notebook |
+|-------|----------|
+| Support Vector Machines — linear/polynomial/RBF kernel SVM classification, SVM regression | `Appendix/SVM.ipynb` |
+| Mixed Precision & Quantization — FP16 training, `GradScaler`, dynamic/static/QAT quantization, 4-bit (NF4) quantized LLM inference with `bitsandbytes` | `Appendix/Mixed_Precision_Quantization.ipynb` |
 
 ### CNN Architectures (from scratch in PyTorch)
 
@@ -79,8 +88,8 @@ Based on Part II of the book. Implemented with **PyTorch** and **torchvision**.
 
 | Project | Description |
 |---------|-------------|
-| `CIFAR10/cifar10.ipynb` | Image classification on CIFAR-10 |
-| `EMNIST/emnist.ipynb` | Handwritten character recognition on EMNIST |
+| `CIFAR10/cifar10.ipynb` | Image classification on CIFAR-10, with Optuna hyperparameter tuning |
+| `EMNIST/emnist.ipynb` | Handwritten character recognition on EMNIST, with Optuna hyperparameter tuning |
 | `HYMENOPTERA/hymenoptera.ipynb` | Transfer learning & fine-tuning ResNet-50 on bees vs. ants |
 
 ### Char-RNN
@@ -91,16 +100,9 @@ A from-scratch character-level RNN (`Char-RNN/Char-RNN_from_scratch.ipynb`) trai
 
 A minimal autograd engine (`micrograd/engine.py` + `micrograd/nn.py`) built from scratch — implements reverse-mode automatic differentiation over a scalar value graph, inspired by Andrej Karpathy's micrograd.
 
----
+### Shared Utilities
 
-## MLflow & Hyperparameter Tuning
-
-Located in `MLFLow/`.
-
-| Notebook | Description |
-|----------|-------------|
-| `MlFlow.ipynb` | Experiment tracking with MLflow on FashionMNIST |
-| `HyperParameterTuning.ipynb` | Automated hyperparameter search with **Optuna** + MLflow logging |
+`utils/utils.py` — reusable PyTorch helpers used across notebooks: CIFAR-10 data loaders with normalization, He-initialized MLP builder, and a generic train/evaluate loop with early stopping and LR scheduler support.
 
 ---
 
@@ -108,11 +110,15 @@ Located in `MLFLow/`.
 
 - Supervised & unsupervised learning fundamentals
 - Full ML pipelines: preprocessing, feature engineering, cross-validation
+- Support vector machines: linear, kernelized (polynomial, RBF), and regression
 - CNNs: conv layers, pooling, batch norm, skip connections, attention
 - RNNs: time-series forecasting, seq2seq, 1D WaveNet-style convolutions
 - Transfer learning and fine-tuning pretrained models
 - NLP: sentiment analysis, tokenization, attention, transformers, BERT, GPT-2, chatbots
-- Experiment tracking and reproducibility with MLflow
+- LLM alignment: supervised fine-tuning (SFT) and Direct Preference Optimization (DPO) with TRL
+- Vision & multimodal transformers: Vision Transformer (ViT), CLIP zero-shot classification
+- Generative models: autoencoders (stacked, tied, convolutional, sparse), VAEs, discrete VAEs, GANs, DDPM/DDIM diffusion, Stable Diffusion
+- Mixed precision training and model quantization (dynamic, static, QAT, 4-bit NF4)
 - Hyperparameter optimization with Optuna
 - Building autograd from scratch
 
@@ -120,9 +126,10 @@ Located in `MLFLow/`.
 
 ## Stack
 
-- Python 
+- Python
 - scikit-learn · pandas · NumPy · Matplotlib
 - PyTorch · torchvision · torchmetrics
-- Hugging Face Transformers · Tokenizers · sentence-transformers
-- MLflow · Optuna
+- Hugging Face Transformers · Tokenizers · Datasets · sentence-transformers · TRL · Diffusers
+- bitsandbytes (quantization)
+- Optuna (hyperparameter tuning)
 - Jupyter Notebooks
