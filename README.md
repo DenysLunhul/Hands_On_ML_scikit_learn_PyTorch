@@ -1,135 +1,145 @@
 # Hands-On Machine Learning
 
-Personal study notebooks following **"Hands-On Machine Learning with Scikit-Learn and PyTorch" (2025)**, extended with custom CNN/RNN architectures from scratch, vision & multimodal transformers, generative models (VAEs/GANs/diffusion), LLM fine-tuning (SFT/DPO), mixed precision training, and quantization.
+Personal study notebooks following **"Hands-On Machine Learning with Scikit-Learn and PyTorch" (2025)** by Aurélien Géron, extended with custom CNN/RNN architectures from scratch, vision & multimodal transformers, and additional practice projects.
 
 ---
 
-## Repository Structure
+## Table of Contents
+
+- [Quickstart](#quickstart)
+- [Repository structure](#repository-structure)
+- [Notebooks overview](#notebooks-overview)
+- [Key topics covered](#key-topics-covered)
+- [Stack / requirements](#stack--requirements)
+- [How to run](#how-to-run)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
+
+---
+
+## Quickstart
+
+This repository contains a large collection of Jupyter notebooks used for studying classical machine learning and deep learning topics. Notebooks may require datasets, substantial compute (GPU for many deep learning notebooks), and typical ML libraries.
+
+Recommended baseline environment:
+
+- Python 3.9+ (3.10/3.11 recommended)
+- Jupyter or JupyterLab
+- (Optional) Conda for environment management
+
+Basic steps:
+
+1. Clone the repository:
+
+   git clone https://github.com/DenysLunhul/Hands_On_ML_scikit_learn_PyTorch.git
+
+2. Create a Python environment and install dependencies. There is no top-level requirements.txt in this repo; install the packages below or create your own requirements file:
+
+   pip install jupyterlab notebook numpy pandas scikit-learn matplotlib seaborn torch torchvision torchmetrics transformers datasets sentence-transformers diffusers optuna bitsandbytes
+
+(Adjust versions for your platform and GPU support — e.g., follow PyTorch install instructions at https://pytorch.org.)
+
+3. Start JupyterLab or Jupyter Notebook and open the notebooks in the folders below.
+
+---
+
+## Repository structure
 
 ```
-Hands-On_ML/
-├── Classic_Machine_Learning/      # Chapters 1–8: sklearn & core ML concepts
+Hands_On_ML_scikit_learn_PyTorch/
+├── Classic_Machine_Learning/      # Chapters 1–8: scikit-learn & core ML concepts
 ├── Neural_Networks_Deep_Learning/ # Chapters 9–18: deep learning with PyTorch & Hugging Face
+├── Appendix/                      # Supplemental notebooks and experiments
+├── CNN_Architectures/             # CNNs implemented from scratch (LeNet, AlexNet, ResNet, ...)
+├── RNN_Architectures/             # RNN/LSTM/GRU implementations
+├── practice/                      # Short practice projects (CIFAR10, Titanic, etc.)
+├── utils/                         # Shared utilities used across notebooks
+├── micrograd/                     # Tiny autograd implementation from scratch
+├── .gitignore
+└── README.md
 ```
 
 ---
 
-## Classic Machine Learning
+## Notebooks overview
 
-Based on Part I of the book. Implemented with **scikit-learn**, **pandas**, and **NumPy**.
+High-level mapping between book chapters and folders (not exhaustive):
 
-| Chapter | Topic | Notebook |
-|---------|-------|----------|
-| 1 | ML Landscape — taxonomy, types of learning, key challenges | `Chapter_1/Chapter_1.ipynb` |
-| 2 | End-to-End ML Project — California Housing, pipelines, model selection | `Chapter_2/Chapter_2.ipynb` |
-| 3 | Classification — MNIST, confusion matrix, precision/recall, ROC, multiclass | `Chapter_3/Chapter_3.ipynb` |
-| 4 | Training Linear Models — gradient descent, regularization, logistic regression | `Chapter_4/Chapter_4.ipynb` |
-| 5 | Decision Trees — CART, Gini, feature importance | `Chapter_5/Chapter_5.ipynb` |
-| 6 | Ensemble Learning & Random Forests — bagging, boosting, stacking | `Chapter_6/Chapter_6.ipynb` |
-| 7 | Dimensionality Reduction — PCA, t-SNE, LLE | `Chapter_7/Chapter_7.ipynb` |
-| 8 | Unsupervised Learning — K-Means, DBSCAN, Gaussian Mixtures | `Chapter_8/Chapter_8.ipynb` |
+- Classic Machine Learning (Part I, Chapters 1–8): scikit-learn, data preprocessing, pipelines, model selection, SVMs, clustering, dimensionality reduction.
+- Neural Networks & Deep Learning (Part II, Chapters 9–18): PyTorch basics, training deep nets, CNNs, RNNs/seq2seq, attention and transformers, ViT, multimodal experiments, diffusion models.
+- Appendix: mixed precision, quantization, advanced tools (Optuna tuning, bitsandbytes quantization, etc.).
 
-### Practice Projects
-
-| Project | Description |
-|---------|-------------|
-| `practice/Titanic.ipynb` | Titanic survival prediction — full pipeline from EDA to submission |
-| `practice/Cars_Price_Prediction.ipynb` | Car price regression on a real-world dataset |
-| `Chapter_2/rebuild_from_scratch.ipynb` | End-to-end California Housing pipeline rebuilt from scratch, unguided |
+Refer to the notebook filenames inside each folder for exact examples and runnable content.
 
 ---
 
-## Neural Networks & Deep Learning
-
-Based on Part II of the book. Implemented with **PyTorch**, **torchvision**, and **Hugging Face** libraries.
-
-### Book Chapters
-
-| Chapter | Topic | Notebook |
-|---------|-------|----------|
-| 9 | Artificial Neural Networks — perceptrons, MLP, backprop from scratch | `Chapter_9/Chapter_9.ipynb` |
-| 10 | Neural Nets with PyTorch — `nn.Module`, training loops, callbacks | `Chapter_10/Chapter_10.ipynb` |
-| 11 | Training Deep Neural Networks — batch norm, dropout, optimizers, learning rate schedules | `Chapter_11/Chapter_11.ipynb` |
-| 12 | Deep Computer Vision with CNNs — conv layers, pooling, object detection, localization | `Chapter_12/Chapter_12.ipynb` |
-| 13 | Sequences & Time Series (RNNs) — forecasting, deep RNNs, seq2seq, WaveNet | `Chapter_13/Chapter_13.ipynb` |
-| 14 | NLP with RNNs & Attention — sentiment analysis, bidirectional RNNs, Hugging Face tokenizers/pretrained embeddings/pipelines/Trainer API | `Chapter_14/Chapter_14.ipynb` |
-| 15 | Transformers for NLP & Chatbots — attention, positional encodings, multihead attention, transformer architecture, NMT, BERT (encoder-only), sentence embeddings, GPT-2 generation/QA, turning an LLM into a chatbot with SFT + DPO fine-tuning via **TRL** | `Chapter_15/Chapter_15.ipynb` |
-| 16 | Vision & Multimodal Transformers — Vision Transformer (ViT) from scratch, fine-tuning `ViTForImageClassification` on Oxford-IIIT Pets, zero-shot classification & image-text similarity with **CLIP** | `Chapter_16/Chapter_16.ipynb` |
-| 18 | Autoencoders, GANs & Diffusion Models — stacked/tied/convolutional/sparse autoencoders, variational & discrete VAEs, GAN training loop, DDPM/DDIM diffusion from scratch, Stable Diffusion text-to-image via **diffusers** | `Chapter_18/Chapter_18.ipynb` |
-
-### Appendix
-
-| Topic | Notebook |
-|-------|----------|
-| Support Vector Machines — linear/polynomial/RBF kernel SVM classification, SVM regression | `Appendix/SVM.ipynb` |
-| Mixed Precision & Quantization — FP16 training, `GradScaler`, dynamic/static/QAT quantization, 4-bit (NF4) quantized LLM inference with `bitsandbytes` | `Appendix/Mixed_Precision_Quantization.ipynb` |
-
-### CNN Architectures (from scratch in PyTorch)
-
-| Architecture | Notebook |
-|--------------|----------|
-| LeNet-5 | `CNN_Architectures/LeNet-5.ipynb` |
-| AlexNet | `CNN_Architectures/AlexNet.ipynb` |
-| GoogLeNet (Inception) | `CNN_Architectures/GoogLeNet.ipynb` |
-| ResNet-34 | `CNN_Architectures/ResNet.ipynb` |
-| SENet | `CNN_Architectures/SENet.ipynb` |
-| Xception | `CNN_Architectures/Xception.ipynb` |
-| WaveNet | `CNN_Architectures/WaveNet.ipynb` |
-
-### RNN Architectures (from scratch in PyTorch)
-
-| Architecture | Notebook |
-|--------------|----------|
-| Vanilla RNN | `RNN_Architectures/Default_RNN.ipynb` |
-| LSTM | `RNN_Architectures/LSTM.ipynb` |
-| GRU | `RNN_Architectures/GRU.ipynb` |
-
-### Practice Projects
-
-| Project | Description |
-|---------|-------------|
-| `CIFAR10/cifar10.ipynb` | Image classification on CIFAR-10, with Optuna hyperparameter tuning |
-| `EMNIST/emnist.ipynb` | Handwritten character recognition on EMNIST, with Optuna hyperparameter tuning |
-| `HYMENOPTERA/hymenoptera.ipynb` | Transfer learning & fine-tuning ResNet-50 on bees vs. ants |
-
-### Char-RNN
-
-A from-scratch character-level RNN (`Char-RNN/Char-RNN_from_scratch.ipynb`) trained on Shakespeare's text to generate new text one character at a time.
-
-### Micrograd
-
-A minimal autograd engine (`micrograd/engine.py` + `micrograd/nn.py`) built from scratch — implements reverse-mode automatic differentiation over a scalar value graph, inspired by Andrej Karpathy's micrograd.
-
-### Shared Utilities
-
-`utils/utils.py` — reusable PyTorch helpers used across notebooks: CIFAR-10 data loaders with normalization, He-initialized MLP builder, and a generic train/evaluate loop with early stopping and LR scheduler support.
-
----
-
-## Key Topics Covered
+## Key topics covered
 
 - Supervised & unsupervised learning fundamentals
 - Full ML pipelines: preprocessing, feature engineering, cross-validation
-- Support vector machines: linear, kernelized (polynomial, RBF), and regression
-- CNNs: conv layers, pooling, batch norm, skip connections, attention
-- RNNs: time-series forecasting, seq2seq, 1D WaveNet-style convolutions
-- Transfer learning and fine-tuning pretrained models
-- NLP: sentiment analysis, tokenization, attention, transformers, BERT, GPT-2, chatbots
-- LLM alignment: supervised fine-tuning (SFT) and Direct Preference Optimization (DPO) with TRL
-- Vision & multimodal transformers: Vision Transformer (ViT), CLIP zero-shot classification
-- Generative models: autoencoders (stacked, tied, convolutional, sparse), VAEs, discrete VAEs, GANs, DDPM/DDIM diffusion, Stable Diffusion
-- Mixed precision training and model quantization (dynamic, static, QAT, 4-bit NF4)
+- SVMs, decision trees, ensembles, random forests
+- CNNs: convolutional layers, pooling, batch norm, skip connections, custom architectures
+- RNNs: time-series forecasting, seq2seq, character RNNs
+- Transformers for NLP and vision (ViT, CLIP-style similarity)
+- Generative models: autoencoders, VAEs, GANs, diffusion models
+- Mixed precision training and model quantization
 - Hyperparameter optimization with Optuna
-- Building autograd from scratch
+- Minimal autograd implementation (micrograd)
 
 ---
 
-## Stack
+## Stack / requirements
 
-- Python
-- scikit-learn · pandas · NumPy · Matplotlib
+Major libraries used in notebooks (not an exhaustive pinned list):
+
+- Python (>=3.9)
+- scikit-learn · pandas · NumPy · Matplotlib · seaborn
 - PyTorch · torchvision · torchmetrics
-- Hugging Face Transformers · Tokenizers · Datasets · sentence-transformers · TRL · Diffusers
-- bitsandbytes (quantization)
-- Optuna (hyperparameter tuning)
-- Jupyter Notebooks
+- Hugging Face: transformers · tokenizers · datasets · sentence-transformers · diffusers · TRL
+- bitsandbytes (for quantized inference)
+- Optuna
+- Jupyter Notebook / JupyterLab
+
+If you prefer reproducibility, create a requirements.txt or Conda environment file and pin versions before sharing or running experiments.
+
+---
+
+## How to run
+
+- For small, CPU-friendly notebooks: install the Python packages above, run `jupyter lab` or `jupyter notebook`, and open the notebook file (.ipynb).
+- For GPU-based training: install a GPU-enabled PyTorch build and other CUDA-aware packages. Use a machine with a compatible NVIDIA GPU and CUDA toolkit or a cloud runtime (Colab, Kaggle, Paperspace, etc.).
+- Some notebooks expect datasets to be downloaded at runtime (e.g., CIFAR-10, Oxford Pets, custom datasets). The notebook usually contains the download/prepare steps.
+
+Notes:
+- Many notebooks are meant for study and demonstration — they may not include robust error handling or production-ready training loops.
+- Consider running long experiments with caution: they can require hours of compute and substantial disk space.
+
+---
+
+## Contributing
+
+Contributions, fixes, and improvements are welcome. If you find errors, have suggestions, or want to add notebooks:
+
+- Open an issue describing the change or improvement.
+- For code or notebook changes, submit a pull request with a clear description and minimal, focused changes.
+
+Please keep notebook outputs cleared when submitting PRs if the change is code-only to reduce noise and large diffs.
+
+---
+
+## License
+
+No license file is included in this repository. If you plan to reuse code from here, please check with the repository owner (see Contact) or add a LICENSE file to clarify reuse terms.
+
+---
+
+## Contact
+
+Repo owner: DenysLunhul — https://github.com/DenysLunhul
+
+If you'd like, I can:
+
+- Add a requirements.txt with a reasonable baseline of pinned package versions.
+- Create a CONTRIBUTING.md or License file (e.g., MIT) and open a PR with those changes.
+
